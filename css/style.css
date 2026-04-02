@@ -229,6 +229,31 @@ img {
   letter-spacing: -0.01em;
 }
 
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-naver);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: var(--transition-normal);
+  white-space: nowrap;
+}
+
+.map-btn:hover {
+  background: #02b351;
+  transform: translateY(-1px);
+}
+
+.map-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .search-container {
   position: relative;
   flex: 1;
@@ -607,16 +632,27 @@ img {
   }
 
   .header-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-md);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
   }
 
   .brand {
     justify-content: center;
   }
 
+  .map-btn span {
+    display: inline;
+  }
+
+  .map-btn {
+    padding: var(--space-sm) var(--space-md);
+  }
+
   .search-container {
+    order: 3;
+    flex-basis: 100%;
     max-width: 100%;
   }
 
