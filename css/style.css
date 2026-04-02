@@ -1,13 +1,4 @@
-/**
- * CS Partnership Dashboard
- * Interactive Portfolio Style
- */
-
-/* ========================================
-   CSS Variables
-   ======================================== */
 :root {
-  /* Colors */
   --color-bg: #FAF9F7;
   --color-card: #FFFFFF;
   --color-text: #1A1A1A;
@@ -16,7 +7,6 @@
   --color-border: #E5E5E5;
   --color-border-light: rgba(0, 0, 0, 0.06);
 
-  /* Category Colors */
   --color-food: #FF8C42;
   --color-bar: #A855F7;
   --color-cafe: #F59E0B;
@@ -24,22 +14,18 @@
   --color-culture: #3B82F6;
   --color-other: #6B7280;
 
-  /* Accent */
   --color-benefit: #FF6B6B;
   --color-naver: #03C75A;
 
-  /* Layout */
   --layout-padding: clamp(1rem, 5vw, 4rem);
   --grid-gap: clamp(1rem, 2vw, 1.5rem);
 
-  /* Typography */
   --font-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --hero-size: clamp(3rem, 12vw, 10rem);
   --hero-weight: 900;
   --hero-tracking: -0.04em;
 
-  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 12px;
@@ -48,35 +34,27 @@
   --space-2xl: 32px;
   --space-3xl: 48px;
 
-  /* Border Radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
 
-  /* Animation */
-  --flip-duration: 0.6s;
+  --flip-duration: 0.3s;
   --flip-easing: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: 150ms ease;
   --transition-normal: 200ms ease;
 
-  /* Card */
   --card-height: 340px;
 
-  /* Z-index */
   --z-header: 100;
   --z-modal: 200;
 }
 
-/* ========================================
-   Reset & Base
-   ======================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -130,9 +108,6 @@ img {
   display: none !important;
 }
 
-/* ========================================
-   Hero Section
-   ======================================== */
 .hero {
   min-height: 40vh;
   display: flex;
@@ -162,7 +137,6 @@ img {
   align-items: flex-start;
 }
 
-/* Title lines */
 .title-line {
   display: block;
   white-space: nowrap;
@@ -178,7 +152,6 @@ img {
   margin-top: -0.1em;
 }
 
-/* Individual letter spans for morph effect */
 .title-line .char {
   display: inline-block;
   transition: opacity 0.15s ease, transform 0.15s ease;
@@ -208,9 +181,6 @@ img {
   color: var(--color-text-tertiary);
 }
 
-/* ========================================
-   Header
-   ======================================== */
 .header {
   position: sticky;
   top: 0;
@@ -259,7 +229,6 @@ img {
   letter-spacing: -0.01em;
 }
 
-/* Search */
 .search-container {
   position: relative;
   flex: 1;
@@ -298,7 +267,6 @@ img {
   box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
 }
 
-/* Filter Navigation */
 .filter-nav {
   display: flex;
   gap: var(--space-sm);
@@ -349,15 +317,11 @@ img {
   line-height: 1;
 }
 
-/* ========================================
-   Main Content
-   ======================================== */
 .main {
   padding: var(--space-2xl) var(--layout-padding);
   min-height: 50vh;
 }
 
-/* Card Grid */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -376,7 +340,6 @@ img {
   }
 }
 
-/* Empty State */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -397,9 +360,6 @@ img {
   color: var(--color-text-tertiary);
 }
 
-/* ========================================
-   Flip Card System
-   ======================================== */
 .flip-card {
   perspective: 1000px;
   height: var(--card-height);
@@ -408,31 +368,24 @@ img {
 }
 
 .flip-card-inner {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  transform: rotateY(var(--tilt-x)) rotateX(var(--tilt-y));
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
-/* Flip states */
 .flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(calc(180deg + var(--tilt-x))) rotateX(var(--tilt-y));
 }
 
-/* Desktop hover flip */
-@media (hover: hover) and (pointer: fine) {
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .flip-card:hover .flip-card-inner,
-  .flip-card.flipped .flip-card-inner {
-    will-change: transform;
-  }
+.flip-card.flipped .flip-card-inner {
+  will-change: transform;
 }
 
-/* Card Faces */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -445,7 +398,6 @@ img {
   box-shadow: var(--shadow-sm);
 }
 
-/* Front Face */
 .flip-card-front {
   display: flex;
   flex-direction: column;
@@ -516,24 +468,20 @@ img {
 }
 
 .flip-hint {
-  position: absolute;
-  bottom: var(--space-md);
-  left: 50%;
-  transform: translateX(-50%);
   font-family: var(--font-display);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   color: var(--color-text-tertiary);
   opacity: 0.6;
+  margin-top: var(--space-sm);
+  text-align: center;
 }
 
-/* Hide hint on desktop */
 @media (hover: hover) and (pointer: fine) {
   .flip-hint {
     display: none;
   }
 }
 
-/* Back Face */
 .flip-card-back {
   display: flex;
   flex-direction: column;
@@ -590,7 +538,6 @@ img {
   line-height: 1.4;
 }
 
-/* Naver Button */
 .naver-btn {
   display: inline-flex;
   align-items: center;
@@ -629,9 +576,6 @@ img {
   border-radius: 4px;
 }
 
-/* ========================================
-   Footer
-   ======================================== */
 .footer {
   padding: var(--space-2xl) var(--layout-padding);
   text-align: center;
@@ -652,9 +596,6 @@ img {
   color: var(--color-text-tertiary);
 }
 
-/* ========================================
-   Responsive Adjustments
-   ======================================== */
 @media (max-width: 768px) {
   :root {
     --card-height: 300px;
@@ -706,9 +647,23 @@ img {
   }
 }
 
-/* ========================================
-   Accessibility
-   ======================================== */
+.tilt-enabled .flip-card-inner {
+  will-change: transform;
+}
+
+.tilt-enabled .flip-card:not(.flipped) .flip-card-inner {
+  transition: transform 0.15s ease-out;
+}
+
+.tilt-enabled .flip-card.flipped .flip-card-inner {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tilt-enabled .title-line {
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -727,7 +682,6 @@ img {
   }
 }
 
-/* Focus visible */
 .flip-card:focus-visible {
   outline: 3px solid var(--color-text);
   outline-offset: 4px;
@@ -741,29 +695,21 @@ img {
   outline-offset: 2px;
 }
 
-/* Touch feedback */
 .flip-card.touching .flip-card-front {
   transform: scale(0.98);
 }
 
-/* ========================================
-   Scroll Reveal Animations
-   ======================================== */
-
-/* Initial state - hidden */
 .flip-card {
   opacity: 0;
   transform: translateY(30px);
 }
 
-/* Revealed state */
 .flip-card.revealed {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Header scroll effect */
 .header {
   transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
@@ -775,7 +721,6 @@ img {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Hero parallax effect */
 .hero {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -785,7 +730,6 @@ img {
   transform: translateY(-20px);
 }
 
-/* Filter nav scroll shadow */
 .filter-nav {
   transition: box-shadow 0.3s ease;
 }
@@ -794,7 +738,6 @@ img {
   box-shadow: inset 0 -1px 0 var(--color-border);
 }
 
-/* Staggered animation delay for cards */
 .flip-card:nth-child(1) { transition-delay: 0ms; }
 .flip-card:nth-child(2) { transition-delay: 50ms; }
 .flip-card:nth-child(3) { transition-delay: 100ms; }
@@ -804,7 +747,6 @@ img {
 .flip-card:nth-child(7) { transition-delay: 300ms; }
 .flip-card:nth-child(8) { transition-delay: 350ms; }
 
-/* Disable scroll animations for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .flip-card {
     opacity: 1;
