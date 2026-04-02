@@ -454,9 +454,9 @@ class TiltEffect {
     this.permissionGranted = false;
 
     this.options = {
-      cardRotateMax: 5,
-      heroTranslateMax: 10,
-      easing: 0.08
+      cardRotateMax: 25,
+      heroTranslateMax: 50,
+      easing: 0.15
     };
 
     this.init();
