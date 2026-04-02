@@ -1,5 +1,5 @@
 :root {
-  --color-bg: #FAF9F7;
+  --color-bg: #F0EFEC;
   --color-card: #FFFFFF;
   --color-text: #1A1A1A;
   --color-text-secondary: #6B6B6B;
@@ -109,6 +109,7 @@ img {
 }
 
 .hero {
+  position: relative;
   min-height: 40vh;
   display: flex;
   align-items: flex-end;
@@ -119,7 +120,26 @@ img {
   overflow: hidden;
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 40%;
+  height: 80%;
+  background-image: url('../images/phoenix-emblem.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-content {
+  position: relative;
+  z-index: 1;
   width: 100%;
 }
 
